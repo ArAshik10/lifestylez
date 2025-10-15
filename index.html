@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LifeStylez Clothing Store</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+
+    body {
+      background: #f5f5f7;
+      color: #000;
+    }
+
+    header {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    /* Banner Section */
+    .banner {
+      background: url('https://via.placeholder.com/1200x400.png?text=LifeStylez+Premium+Clothing') no-repeat center center/cover;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+      position: relative;
+    }
+
+    .banner::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+    }
+
+    .banner-content {
+      position: relative;
+      z-index: 1;
+      font-size: 2.5rem;
+      font-weight: bold;
+      padding: 0 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+    }
+
+    .product {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      width: 280px;
+      text-align: center;
+      padding: 25px;
+      transition: transform 0.3s ease;
+    }
+
+    .product:hover { transform: translateY(-7px); }
+
+    .product img {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 20px;
+    }
+
+    .product-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #1a1a1a;
+    }
+
+    .product-price {
+      font-size: 1.2rem;
+      color: #ff4d4d;
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 18px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 0.95rem;
+    }
+
+    .add-cart {
+      background: #1a1a1a;
+      color: #fff;
+    }
+
+    .add-cart:hover { background: #333; }
+
+    .buy-now {
+      background: #fff;
+      color: #1a1a1a;
+      border: 2px solid #1a1a1a;
+    }
+
+    .buy-now:hover { background: #1a1a1a; color: #fff; }
+
+    /* Form Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 25px;
+      border-radius: 15px;
+      max-width: 450px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .close-modal {
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 0.95rem;
+    }
+
+    form textarea { resize: vertical; height: 80px; }
+
+    form button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+    }
+
+    /* Footer */
+    footer {
+      background: #1a1a1a;
+      color: #fff;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.95rem;
+      margin-top: 50px;
+    }
+
+    footer a { color: #ff4d4d; text-decoration: none; }
+
+    footer a img { vertical-align: middle; }
+
+    @media (max-width: 600px) {
+      .products { flex-direction: column; align-items: center; }
+      .banner-content { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>LifeStylez</header>
+
+<!-- Banner Section -->
+<section class="banner">
+  <div class="banner-content"> Premium Clothing for Your Lifestyle</div>
+</section>
+
+<div class="container">
+  <h2 style="text-align:center; margin-bottom:20px;">Our Products</h2>
+  <div class="products">
+    <div class="product">
+      <img src="https://via.placeholder.com/280x280.png?text=Jacket" alt="Jacket">
+      <div class="product-title">Premium Jacket</div>
+      <div class="product-price">$99.99</div>
+      <div class="buttons">
+        <button class="btn add-cart" onclick="addToCart('Premium Jacket', 99.99)">Add to Cart</button>
+        <button class="btn buy-now" onclick="openForm('Premium Jacket', 99.99)">Buy Now</button>
+      </div>
+    </div>
+    <div class="product">
+      <img src="https://via.placeholder.com/280x280.png?text=T-Shirt" alt="T-Shirt">
+      <div class="product-title">Classic T-Shirt</div>
+      <div class="product-price">$39.99</div>
+      <div class="buttons">
+        <button class="btn add-cart" onclick="addToCart('Classic T-Shirt', 39.99)">Add to Cart</button>
+        <button class="btn buy-now" onclick="openForm('Classic T-Shirt', 39.99)">Buy Now</button>
+      </div>
+    </div>
+    <div class="product">
+      <img src="product 1" alt="Sneakers">
+      <div class="product-title">Stylish Sneakers</div>
+      <div class="product-price">$79.99</div>
+      <div class="buttons">
+        <button class="btn add-cart" onclick="addToCart('Stylish Sneakers', 79.99)">Add to Cart</button>
+        <button class="btn buy-now" onclick="openForm('Stylish Sneakers', 79.99)">Buy Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Form Modal -->
+<div class="modal" id="formModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Checkout Form</h3>
+      <span class="close-modal" onclick="closeForm()">✖</span>
+    </div>
+    <form id="checkoutForm">
+      <input type="hidden" id="productName">
+      <input type="hidden" id="productPrice">
+      <label for="name">Name</label>
+      <input type="text" id="name" required>
+      <label for="address">Address</label>
+      <textarea id="address" required></textarea>
+      <label for="phone">Phone</label>
+      <input type="tel" id="phone" required>
+      <label for="note">Note</label>
+      <textarea id="note"></textarea>
+      <button type="submit" class="btn buy-now">Place Order</button>
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  &copy; 2025 LifeStylez. Premium Clothing for You.<br>
+  Contact: <a href="mailto:lifestylez.main@gmail.com">lifestylez.main@gmail.com</a><br>
+  Follow us:
+  <a href="https://www.facebook.com/profile.php?id=61582354529526" target="_blank" style="display:inline-block; margin-top:5px;">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" style="width:24px; height:24px;">
+  </a>
+</footer>
+
+<script>
+  let cart = [];
+
+  function addToCart(name, price) {
+    cart.push({ name, price });
+    alert(name + " added to cart!");
+  }
+
+  function openForm(name, price) {
+    document.getElementById('productName').value = name;
+    document.getElementById('productPrice').value = price;
+    document.getElementById('formModal').style.display = 'flex';
+  }
+
+  function closeForm() {
+    document.getElementById('formModal').style.display = 'none';
+  }
+
+  document.getElementById('checkoutForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const address = document.getElementById('address').value;
+    const phone = document.getElementById('phone').value;
+    const note = document.getElementById('note').value;
+    const product = document.getElementById('productName').value;
+    const price = document.getElementById('productPrice').value;
+
+    alert(`Order Placed!\n\nProduct: ${product}\nPrice: $${price}\nName: ${name}\nAddress: ${address}\nPhone: ${phone}\nNote: ${note}`);
+    closeForm();
+    this.reset();
+  });
+</script>
+
+</body>
+</html>
